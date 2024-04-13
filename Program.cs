@@ -1,37 +1,29 @@
-﻿/* Задача 3: Задайте произвольный массив. Выведете его элементы, начиная с конца. 
-Использовать рекурсию, не использовать циклы. */
+﻿/* Задача 2: Напишите программу вычисления функции Аккермана с помощью рекурсии.
+ Даны два неотрицательных числа m и n. */
 
-int[] array = new int[10];
-FillingArray();
-PrintArray();
-Console.WriteLine();
-int i = 0;
 
-PrintArrayEl(array.Length-1,i);
+Console.WriteLine("введите два числа");
+int m = Convert.ToInt32(Console.ReadLine());
+int n = Convert.ToInt32(Console.ReadLine());
 
-void FillingArray()
+Console.WriteLine(AkkermanFunction(m,n));
+
+int AkkermanFunction(int m, int n)
 {
-    for(int i = 0; i < array.Length; i++)
-    {
-        array[i] = new Random().Next(1,30);
-    }
-}
+   if(m == 0)
+   {
+        return n + 1;
+   }
+    if(n == 0)
+   {
+        return AkkermanFunction(m-1,1);
+   }
+   else
+   {
+        return AkkermanFunction(m-1,AkkermanFunction(m,n-1));
+   }
+} 
 
-void PrintArray()
-{
-    for(int i = 0; i < array.Length; i++)
-    {
-        Console.Write(array[i]+ "\t");
-    }
-}
 
-void PrintArrayEl(int start, int end)
-{
-    if(start < end)
-    {
-        return;
-    }
-    Console.Write(array[start]+"\t");
-    PrintArrayEl(start-1,end);
-}
+
 
